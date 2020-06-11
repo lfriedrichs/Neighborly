@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  type: 
+  description: MyString
+  userId: 1
+  offerId: 1
+  validUntil: 2020-06-11 09:14:55
+
+two:
+  title: MyString
+  type: 
+  description: MyString
+  userId: 1
+  offerId: 1
+  validUntil: 2020-06-11 09:14:55

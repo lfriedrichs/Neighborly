@@ -1,0 +1,2 @@
+class ZipcodeNeighborhood < ApplicationRecord
+end
