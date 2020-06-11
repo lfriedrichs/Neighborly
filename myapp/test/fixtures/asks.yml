@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  offer_id: MyString
+  integer: MyString
+  valid_until: 2020-06-11 13:40:04
+  description: MyString
+  type: 
+  title: MyString
+
+two:
+  user_id: 1
+  offer_id: MyString
+  integer: MyString
+  valid_until: 2020-06-11 13:40:04
+  description: MyString
+  type: 
+  title: MyString
