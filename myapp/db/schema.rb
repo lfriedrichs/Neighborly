@@ -17,8 +17,7 @@ ActiveRecord::Schema.define(version: 2020_06_11_220335) do
 
   create_table "asks", force: :cascade do |t|
     t.integer "user_id"
-    t.string "offer_id"
-    t.string "integer"
+    t.integer "offer_id"
     t.datetime "valid_until"
     t.string "description"
     t.string "type"
@@ -35,8 +34,7 @@ ActiveRecord::Schema.define(version: 2020_06_11_220335) do
 
   create_table "offers", force: :cascade do |t|
     t.integer "user_id"
-    t.string "ask_id"
-    t.string "integer"
+    t.integer "ask_id"
     t.datetime "valid_until"
     t.string "description"
     t.boolean "selected"
