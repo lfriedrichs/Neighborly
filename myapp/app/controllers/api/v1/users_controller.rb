@@ -2,12 +2,12 @@ class Api::V1::UsersController < ApplicationController
     skip_before_action :authorized, only: [:create]
     
     def home
-      render json: { user: UserSerializer.new(current_user), newsFeed: newsFeed(current_user) }, status: :accepted
+      render json: { newsFeed: newsFeed(current_user) }, status: :accepted
     end
 
     def create
         userInfo = user_params
-        zipcode = Zipcode.find_by(zipcode: params.user.zipcode)
+        zipcode = Zipcode.find_by(zipcode: params[:user][:zipcode])
         if zipcode
           userInfo[:zipcode_id] = zipcode
           @user = User.create(userInfo)
@@ -19,6 +19,26 @@ class Api::V1::UsersController < ApplicationController
         else 
           render json: { error: 'Your address is outside of our coverage area' }, status: :not_acceptable
         end
+      end
+
+      def update
+        userInfo = user_params
+        if params[:user][:zipcode]
+          zipcode = Zipcode.find_by(zipcode: params[:user][:zipcode])
+          if zipcode
+            userInfo[:zipcode_id] = zipcode
+          else 
+            message = json: { error: 'Your new address is outside of our coverage area' }, status: :not_acceptable
+          end
+        end
+        @user = current_user
+        @user.update(userInfo)
+          if @user.valid?
+            message = json: { user: UserSerializer.new(@user) }, status: :updated
+          else
+            message = json: { error: 'failed to update user' }, status: :not_acceptable
+          end
+          render message
       end
     
       private

@@ -9,6 +9,14 @@ class AsksController < ApplicationController
         end
     end
 
+    def delete 
+      if Ask.destroy(params[:ask][:id])
+        render json: { message: 'ask deleted from database'}, status: :accepted
+      else
+        render json: { error: 'failed to delete ask' }, status: :not_acceptable
+      end
+    end
+
     
       private
       def ask_params

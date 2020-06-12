@@ -8,6 +8,14 @@ class OffersController < ApplicationController
         end
     end
 
+    def delete 
+        if Offer.destroy(params[:offer][:id])
+          render json: { message: 'offer deleted from database'}, status: :accepted
+        else
+          render json: { error: 'failed to delete offer' }, status: :not_acceptable
+        end
+      end
+
     
       private
       def offer_params
