@@ -1,2 +1,0 @@
-class ZipcodeNeighborhood < ApplicationRecord
-end
