@@ -9,7 +9,7 @@ class Api::V1::UsersController < ApplicationController
         userInfo = user_params
         zipcode = Zipcode.find_by(zipcode: params[:user][:zipcode])
         if zipcode
-          userInfo[:zipcode_id] = zipcode
+          userInfo[:zipcode_id] = zipcode[:id]
           @user = User.create(userInfo)
           if @user.valid?
             render json: { user: UserSerializer.new(@user) }, status: :created
@@ -23,15 +23,15 @@ class Api::V1::UsersController < ApplicationController
 
       def update
         userInfo = user_params
+        @user = current_user
         if params[:user][:zipcode]
           zipcode = Zipcode.find_by(zipcode: params[:user][:zipcode])
           if zipcode
-            userInfo[:zipcode_id] = zipcode
+            userInfo[:zipcode_id] = zipcode[:id]
           else 
             message = json: { error: 'Your new address is outside of our coverage area' }, status: :not_acceptable
           end
         end
-        @user = current_user
         @user.update(userInfo)
           if @user.valid?
             message = json: { user: UserSerializer.new(@user) }, status: :updated
