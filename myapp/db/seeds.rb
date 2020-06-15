@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name : 'Star Wars' }, { name : 'Lord of the Rings' }])
 #   Character.create(name : 'Luke', movie : movies.first)
 
+Neighborhood.destroy_all
+Zipcode.destroy_all
+ZipcodeNeighborhood.destroy_all
+
 neighborhoods = [{admiral: [98116, 98126]},
 {alki: [98116]},
 {arbor_Heights: [98146, 98136, 98126]},

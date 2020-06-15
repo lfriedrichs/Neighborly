@@ -29,16 +29,16 @@ class Api::V1::UsersController < ApplicationController
           if zipcode
             userInfo[:zipcode_id] = zipcode[:id]
           else 
-            message = json: { error: 'Your new address is outside of our coverage area' }, status: :not_acceptable
+            render json: { error: 'Your new address is outside of our coverage area' }, status: :not_acceptable
+            return true
           end
         end
         @user.update(userInfo)
           if @user.valid?
-            message = json: { user: UserSerializer.new(@user) }, status: :updated
+            render json: { user: UserSerializer.new(@user) }, status: :updated
           else
-            message = json: { error: 'failed to update user' }, status: :not_acceptable
+            render json: { error: 'failed to update user' }, status: :not_acceptable
           end
-          render message
       end
     
       private
