@@ -6,6 +6,7 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def create
+        byebug
         userInfo = user_params
         zipcode = Zipcode.find_by(zipcode: params[:user][:zipcode])
         if zipcode
@@ -43,6 +44,7 @@ class Api::V1::UsersController < ApplicationController
     
       private
       def user_params
+        byebug
         params.require(:user).permit(:username, :password, :first_name, :last_name, :address_line_1, :address_line_2, :city, :state, :email, :phone_number)
       end
 
