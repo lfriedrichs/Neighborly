@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
+import AskSummary from '../components/asks/AskSummary'
+
 class NewsFeedContainer extends Component {
 
   render() {
     return (
       <div>
-        This feature is still in development
+        <AskSummary/>
       </div>
     )
   }

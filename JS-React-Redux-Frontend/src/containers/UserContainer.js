@@ -1,22 +1,17 @@
 import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
+import User from '../components/users/User'
 
 class UserContainer extends Component {
 
   render() {
     return (
       <div>
-        This feature is still in development
+        <User/>
       </div>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  }
-}
-
-export default connect(mapStateToProps)(UserContainer)
+export default UserContainer

@@ -1,17 +1,17 @@
-import React from 'react';
-import './App.css';
+import React, { Component } from 'react';
+import Message from './components/authorizers/Message'
+import LoginInput from './components/authorizers/LoginInput'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-        Neighborly
-        </p>
+class App extends Component {
 
-      </header>
-    </div>
-  );
-}
+    render() {
+      return (
+        <div>
+            <Message/>
+            <LoginInput/>
+        </div>
+      )
+    }
+  }
 
-export default App;
+  export default App

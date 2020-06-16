@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
+import Offer from '../components/offers/Offer'
+
 class OffersContainer extends Component {
 
   render() {
     return (
       <div>
-        This feature is still in development
+        <Offer/>
       </div>
     )
   }

@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
+import Ask from '../components/asks/Ask'
+
 class AsksContainer extends Component {
 
   render() {
     return (
       <div>
-        This feature is still in development
+        <Ask/>
       </div>
     )
   }
