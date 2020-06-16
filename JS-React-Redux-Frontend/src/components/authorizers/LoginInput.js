@@ -1,11 +1,13 @@
 
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { useAuth } from "../context/auth";
+import { useAuth } from "../../context/auth";
+import { Card, Form, Input, Button, Error } from './AuthForm'; 
 
-URL = "www.example.com"
 
-function LoginInput() {
+const URL = "127.0.0.1:3000"
+
+function LoginInput(props) {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isError, setIsError] = useState(false);
   const [userName, setUserName] = useState("");
@@ -53,7 +55,7 @@ function LoginInput() {
         />
         <Button onClick={postLogin}>Sign In</Button>
       </Form>
-      <Button onClick={() => {props.loggingIn()}}>Need to Sign Up?</Button>
+      <Button onClick={() => {props.handleFormSwitch()}}>Need to Sign Up?</Button>
         { isError && <Error>The username or password provided were incorrect!</Error> }
     </Card>
   );

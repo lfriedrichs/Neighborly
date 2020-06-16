@@ -8,7 +8,7 @@ class NewsFeedContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="news-feed-container">
         <AskSummary/>
       </div>
     )

@@ -8,7 +8,7 @@ class AsksContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="asks-container">
         <Ask/>
       </div>
     )

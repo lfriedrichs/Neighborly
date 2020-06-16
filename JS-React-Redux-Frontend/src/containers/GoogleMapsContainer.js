@@ -6,7 +6,7 @@ class GoogleMapsContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="google-maps-container">
         This feature is still in development
       </div>
     )
