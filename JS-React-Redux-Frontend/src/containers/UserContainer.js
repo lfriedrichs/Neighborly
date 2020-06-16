@@ -14,4 +14,17 @@ class UserContainer extends Component {
   }
 }
 
-export default UserContainer
+const mapDispatchToProps = dispatch => {
+  return {
+    addRestaurant: (text) => dispatch({type: "ADD_RESTAURANT", text: text}),
+    deleteRestaurant: (id) => dispatch({type: "DELETE_RESTAURANT", id: id})
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    restaurants: state.restaurants
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserContainer)

@@ -4,7 +4,7 @@ import './index.css';
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import manageUser from './reducers/manageUser'
 import GoogleMapsContainer from './containers/GoogleMapsContainer'
@@ -14,26 +14,28 @@ import OffersContainer from './containers/OffersContainer'
 import NewsFeedContainer from './containers/NewsFeedContainer';
 import App from './App';
 import NavBar from './components/NavBar'
-
-
-
+import { AuthContext } from "./context/auth"; 
+import PrivateRoute from './PrivateRoute';
  
 const store = createStore(manageUser)
 
 ReactDOM.render(
 
   <Provider store={store}>
-    <Router >
-      <div>
-        <NavBar/>
-        <Route exact path="/home" component={NewsFeedContainer} />
-        <Route exact path="/displaymap" component={GoogleMapsContainer} />
-        <Route exact path="/asks" component={AsksContainer} />
-        <Route exact path="/offers" component={OffersContainer} />
-        <Route exact path="/user" component={UserContainer} />
-        <Route exact path="/" component={App} />
-      </div>
-    </Router>
+    <AuthContext.Provider value={false}>
+      <Router >
+        <div>
+          <Switch>
+            <PrivateRoute exact path="/home" component={NewsFeedContainer} />
+            <PrivateRoute exact path="/displaymap" component={GoogleMapsContainer} />
+            <PrivateRoute exact path="/asks" component={AsksContainer} />
+            <PrivateRoute exact path="/offers" component={OffersContainer} />
+            <PrivateRoute exact path="/user" component={UserContainer} />
+            <Route exact path="/" component={App} />
+          </Switch>
+        </div>
+      </Router>
+    </AuthContext.Provider>
   </Provider>,
   document.getElementById('root')
 );

@@ -1,5 +1,5 @@
 
-export default function manageUser(state = {user: {asks: [""], offers: [""]}}, action) {
+export default function manageUser(state = {user: {id: '', token: "", asks: [""], offers: [""]}}, action) {
     switch(action.type) {
         case "UPDATE_USER":
             return {...state, user: action.user}
