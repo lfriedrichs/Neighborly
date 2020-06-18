@@ -12,7 +12,6 @@ class NewsFeedContainer extends Component {
             <div className="col-md-6 col-md-offset-3">
                 <h1>Hi {this.props.user.user.first_name}!</h1>
                 <p>You're logged in with React & JWT!!</p>
-                <h3>Users from secure api end point:</h3>               
             </div>
         <AskSummary/>
       </div>

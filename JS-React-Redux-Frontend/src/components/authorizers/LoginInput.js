@@ -30,10 +30,15 @@ class Login extends React.Component {
         const { username, password } = this.state;
         const { dispatch } = this.props;
         if (username && password) {
-            dispatch(authActions.login(username, password));
-            this.props.handleLogin()
+            dispatch(authActions.login(username, password)).then(
+                () => {this.props.handleLogin()}
+            )
 
         }
+    }
+
+    message = {
+        content: "Welcome to Neighborly! Login to start sharing with your neighbors"
     }
 
     render() {
@@ -41,7 +46,7 @@ class Login extends React.Component {
         return (
           
             <div className="col-md-6 col-md-offset-3">
-                <Message/>
+                <Message content={this.message}/>
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
                         <label htmlFor="username">Username</label>

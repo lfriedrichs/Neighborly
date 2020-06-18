@@ -18,7 +18,7 @@ import { PrivateRoute } from './components/PrivateRoute';
 class App extends React.Component {
 
   state = {
-    render: true
+    render: false
   }
 
   handleLogin = () => {
@@ -28,15 +28,15 @@ class App extends React.Component {
   handleLogout = () => {
       if (localStorage.getItem('user')) {
         this.props.dispatch(authActions.logout());
-        this.setState({render: true})
+        this.setState({render: false})
       }
   }
 
   render() {
     return (  
+
         <Router>
-          
-          {localStorage.getItem('user') ? 
+          {this.state.render === true ? 
             <div className="app-route">
               <Route path="/" component={() => <NavBar handleLogout={this.handleLogout}/>}/> 
               < Switch>
@@ -44,11 +44,14 @@ class App extends React.Component {
                 <PrivateRoute exact path="/asks" component={AsksContainer} />
                 <PrivateRoute exact path="/offers" component={OffersContainer} />
                 <PrivateRoute exact path="/user" component={UserContainer} />  
-                <PrivateRoute path="/home" component={NewsFeedContainer} />                 
-                <Redirect to="/home"/>
+                <PrivateRoute path="/home" component={NewsFeedContainer} />    
+                <Redirect to="/home"/>        
               </Switch>   
             </div>     
-          : <Route path="/" component={() => <AuthorizerContainer handleLogin={this.handleLogin}/>}/>
+          : <div className="app-route">
+              <Route exact path="/login" component={() => <AuthorizerContainer handleLogin={this.handleLogin}/>}/>
+              <Redirect to="/login"/>
+            </div>    
         }
           </Router> 
       )

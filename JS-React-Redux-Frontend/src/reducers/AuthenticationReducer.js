@@ -6,11 +6,13 @@ const initialState = user ? { loggedIn: true, user } : {};
 export function authentication(state = initialState, action) {
   switch (action.type) {
     case userConstants.LOGIN_REQUEST:
+      console.log("hi")
       return {
         loggingIn: true,
         user: action.user
       };
     case userConstants.LOGIN_SUCCESS:
+      console.log("hi")
       return {
         loggedIn: true,
         user: action.user

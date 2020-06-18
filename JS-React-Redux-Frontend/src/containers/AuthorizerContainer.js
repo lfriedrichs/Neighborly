@@ -20,7 +20,7 @@ handleFormSwitch = () => {
     return (
       <div className="authorizer-container">
         {this.state.loggingIn ?   
-            <LoginInput handleFormSwitch={this.handleFormSwitch} handleLogin={this.props.handleLogin}/>
+            <LoginInput handleFormSwitch={this.handleFormSwitch} handleLogin={this.props.handleLogin} />
             : 
             <CreateUser handleFormSwitch={this.handleFormSwitch}/> }
         
