@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Card, Form, Input, Button, Error } from './AuthForm'; 
 
-const URL = "127.0.0.1:3000"
+const URL = "http://localhost:3000/api/v1/create"
 
 function CreateUser(props) {
+  
   const [isError, setIsError] = useState(false);
   const [isCreated, setIsCreated] = useState(false);
-  const [userName, setUserName] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -14,7 +15,7 @@ function CreateUser(props) {
 
   function createUser() {
     fetch(URL, {
-      userName,
+      username,
       password
     }).then(result => {
       if (result.status === 200) {
@@ -30,16 +31,16 @@ function CreateUser(props) {
   if (isCreated) {
     props.handleFormSwitch();
   }
-
+  debugger;
   return (
     <Card>
       <Form onSubmit={() => {createUser()}}>
         <Input 
-          type="userName" 
-          value={userName} 
-          placeholder="userName" 
+          type="username" 
+          value={username} 
+          placeholder="username" 
           onChange={e => {
-            setUserName(e.target.value);
+            setUsername(e.target.value);
           }}/>
         <Input 
           type="password" 

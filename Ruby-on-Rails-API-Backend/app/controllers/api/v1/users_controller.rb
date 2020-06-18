@@ -6,7 +6,6 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def create
-        byebug
         userInfo = user_params
         zipcode = Zipcode.find_by(zipcode: params[:user][:zipcode])
         if zipcode

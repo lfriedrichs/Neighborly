@@ -9,6 +9,11 @@ class NewsFeedContainer extends Component {
   render() {
     return (
       <div className="news-feed-container">
+            <div className="col-md-6 col-md-offset-3">
+                <h1>Hi {this.props.user.firstName}!</h1>
+                <p>You're logged in with React & JWT!!</p>
+                <h3>Users from secure api end point:</h3>               
+            </div>
         <AskSummary/>
       </div>
     )
@@ -17,7 +22,7 @@ class NewsFeedContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    newsFeed: state.newsFeed
+    user: state.userManager
   }
 }
 

@@ -5,7 +5,7 @@ class UserSerializer < ActiveModel::Serializer
     zip = self.object.zipcode
     {zipcode: {
       id: zip.id,
-      zipcode: zip.zipcdoe
+      zipcode: zip.zipcode
       }
     }
   end 

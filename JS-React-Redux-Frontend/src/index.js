@@ -1,19 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 import './index.css';
-import { createStore } from 'redux';
-
-import { AuthContext } from "./context/auth"; 
-import manageUser from './reducers/manageUser'
-import AuthorizerContainer from './containers/AuthorizerContainer'
 import App from './App';
- 
-const store = createStore(manageUser)
+import { Provider } from 'react-redux';
+import { store } from './helpers/Store';
 
 ReactDOM.render(
-
-    <AuthContext.Provider value={false} store={store}>
-      <App />
-    </AuthContext.Provider>,
-  document.getElementById('root')
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('app')
 );
