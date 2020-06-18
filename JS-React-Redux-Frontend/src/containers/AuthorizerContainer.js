@@ -16,7 +16,7 @@ handleFormSwitch = () => {
 }
 
   render() {
-    history.push("/login")
+    this.state.loggingIn === true ? history.push("/login") : history.push("/createuser")
     return (
       <div className="authorizer-container">
         {this.state.loggingIn ?   

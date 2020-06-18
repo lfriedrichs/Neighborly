@@ -40,11 +40,12 @@ class App extends React.Component {
             <div className="app-route">
               <Route path="/" component={() => <NavBar handleLogout={this.handleLogout}/>}/> 
               < Switch>
-                <PrivateRoute path="/" component={NewsFeedContainer} />
                 <PrivateRoute exact path="/displaymap" component={GoogleMapsContainer} />
                 <PrivateRoute exact path="/asks" component={AsksContainer} />
                 <PrivateRoute exact path="/offers" component={OffersContainer} />
-                <PrivateRoute exact path="/user" component={UserContainer} />                    <Redirect to="/home"/>
+                <PrivateRoute exact path="/user" component={UserContainer} />  
+                <PrivateRoute path="/home" component={NewsFeedContainer} />                 
+                <Redirect to="/home"/>
               </Switch>   
             </div>     
           : <Route path="/" component={() => <AuthorizerContainer handleLogin={this.handleLogin}/>}/>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { authActions } from '../../actions/user';
 import Message from './Message'
 
-class LoginPage extends React.Component {
+class Login extends React.Component {
     constructor(props) {
         super(props);
 
@@ -69,4 +69,4 @@ class LoginPage extends React.Component {
     }
 }
 
-export default connect()(LoginPage);
+export default connect()(Login);
