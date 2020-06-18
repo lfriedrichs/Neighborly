@@ -1,6 +1,5 @@
 import { userConstants } from '../constants/UserConstants';
 import { userService } from '../services/UserService';
-import { history } from '../helpers/History';
 
 export const addAsk = (ask) => {
     return {
@@ -45,7 +44,7 @@ export const addAsk = (ask) => {
     };
   };
 
-export const userActions = {
+export const authActions = {
     login,
     logout
 };
@@ -58,10 +57,11 @@ function login(username, password) {
             .then(
                 user => { 
                     dispatch(success(user));
-                    history.push('/');
+
                 },
                 error => {
                     dispatch(failure(error));
+                    return false
                 }
             );
     };

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import LoginInput from '../components/authorizers/LoginInput'
 import CreateUser from '../components/authorizers/CreateUser'
+import { history } from '../helpers/history'
 
 
 class AuthorzizerContainer extends Component {
@@ -15,10 +16,11 @@ handleFormSwitch = () => {
 }
 
   render() {
+    history.push("/login")
     return (
       <div className="authorizer-container">
         {this.state.loggingIn ?   
-            <LoginInput handleFormSwitch={this.handleFormSwitch}/>
+            <LoginInput handleFormSwitch={this.handleFormSwitch} handleLogin={this.props.handleLogin}/>
             : 
             <CreateUser handleFormSwitch={this.handleFormSwitch}/> }
         

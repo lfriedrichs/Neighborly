@@ -10,7 +10,7 @@ function Navbar(props) {
           <NavLink to="/offers" exact>Your Offers</NavLink>
           <NavLink to="/displaymap" exact>Asks By Address</NavLink>
           <NavLink to="/user" exact>User Info</NavLink>
-          <NavLink to="/login" exact >Logout</NavLink>
+          <NavLink to="/login" exact onClick={() => {props.handleLogout()}}>Logout</NavLink>
         </div>
       )
   }

@@ -1,5 +1,6 @@
-import config from 'config';
 import { authHeader } from '../helpers/authHeader';
+
+const URL = "http://localhost:3000/api/v1/"
 
 export const userService = {
     login,
@@ -13,10 +14,10 @@ function login(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch(`/users/authenticate`, requestOptions)
+    return fetch(URL+`login`, requestOptions)
         .then(handleResponse)
         .then(user => {
-            if (user.token) {
+            if (user.jwt) {
                 localStorage.setItem('user', JSON.stringify(user));
             }
 
@@ -34,7 +35,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`/users`, requestOptions).then(handleResponse);
+    return fetch(`URL/users`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

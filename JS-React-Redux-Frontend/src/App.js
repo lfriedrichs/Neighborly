@@ -1,28 +1,60 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import AuthorizerContainer from './containers/AuthorizerContainer'
 import NavBar from './components/NavBar'
-import { history } from './helpers/History';
-import RouterHelper from './helpers/RouterHelper';
+import { authActions } from './actions/user';
 
-export default class App extends React.Component {
+
+import GoogleMapsContainer from './containers/GoogleMapsContainer'
+import UserContainer from './containers/UserContainer'
+import AsksContainer from './containers/AsksContainer'
+import OffersContainer from './containers/OffersContainer'
+import NewsFeedContainer from './containers/NewsFeedContainer';
+
+import { PrivateRoute } from './components/PrivateRoute';
+
+class App extends React.Component {
+
+  state = {
+    render: true
+  }
+
+  handleLogin = () => {
+    this.setState({render: true})
+    }
+
+  handleLogout = () => {
+      if (localStorage.getItem('user')) {
+        this.props.dispatch(authActions.logout());
+        this.setState({render: true})
+      }
+  }
+
   render() {
-    const { user } = this.props;
     return (  
-        <Router history={history}>
+        <Router>
           
           {localStorage.getItem('user') ? 
-          <Route path="/" component={NavBar}/> 
-          : <Route exact path="/login" component={AuthorizerContainer}/>
-          }
-          <RouterHelper user={this.props.user}/>
-        </Router> 
+            <div className="app-route">
+              <Route path="/" component={() => <NavBar handleLogout={this.handleLogout}/>}/> 
+              < Switch>
+                <PrivateRoute path="/" component={NewsFeedContainer} />
+                <PrivateRoute exact path="/displaymap" component={GoogleMapsContainer} />
+                <PrivateRoute exact path="/asks" component={AsksContainer} />
+                <PrivateRoute exact path="/offers" component={OffersContainer} />
+                <PrivateRoute exact path="/user" component={UserContainer} />                    <Redirect to="/home"/>
+              </Switch>   
+            </div>     
+          : <Route path="/" component={() => <AuthorizerContainer handleLogin={this.handleLogin}/>}/>
+        }
+          </Router> 
       )
     }
   }
+
+  export default connect()(App)
 
 
 

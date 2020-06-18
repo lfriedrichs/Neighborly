@@ -17,7 +17,7 @@ class AsksContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    asks: state.user.asks
+    asks: state
   }
 }
 

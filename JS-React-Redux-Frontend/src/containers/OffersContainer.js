@@ -17,7 +17,7 @@ class OffersContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    offers: state.user.offers
+    offers: state
   }
 }
 
